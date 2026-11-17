@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Tourist Token Validation Lab",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 - Generate Token",
+      "request": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/auth/token"
+      }
+    },
+    {
+      "name": "2 - Update Tourist (paste token)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Token",
+            "value": "PASTE_GENERATED_TOKEN_HERE"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rahul\",\n  \"visitedDestination\": \"Hyderabad\",\n  \"contactDetails\": \"9999999999\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:8080/api/tourist/1"
+      }
+    },
+    {
+      "name": "3 - Get Tourist",
+      "request": {
+        "method": "GET",
+        "url": "http://localhost:8080/api/tourist/1"
+      }
+    },
+    {
+      "name": "4 - Invalid Token Test",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Token",
+            "value": "wrong-token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Rahul\",\n  \"visitedDestination\": \"Chennai\",\n  \"contactDetails\": \"8888888888\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:8080/api/tourist/1"
+      }
+    }
+  ]
+}
